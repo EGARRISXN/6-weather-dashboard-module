@@ -1,0 +1,17 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+header {
+    display: flex;
+    justify-content: center;
+    background-color: blue;
+    color: white;
+    margin: 0 auto;
+}
+
+.city-search {
+    color: black;
+}
