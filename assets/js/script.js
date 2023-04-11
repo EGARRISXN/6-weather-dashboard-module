@@ -20,7 +20,7 @@ $(document).ready(function () {
   }
 
   function getApiData(city) {
-    const forecastData = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=6&appid=${apiKey}&units=imperial`;
+    const forecastData = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=6&appid=${apiKey}&units=imperial`;
     fetch(forecastData)
       .then(response => response.json())
       .then(data => {
