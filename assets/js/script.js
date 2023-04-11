@@ -1,44 +1,59 @@
-//Global variables
-var searchHistory = [];
-var apiRootUrl = 'https://api.openweathermap.org';
-var apiKey = 'e081906e41053d0045aef1f5836faf73';
+$(document).ready(function () {
+  let localStorageData = new Set(JSON.parse(localStorage.getItem("city")) || []);
+  const apiKey = "e081906e41053d0045aef1f5836faf73";
+  const historyContainer = $("#search-history");
+  const mainWeatherContainer = $("<div>").attr("id", "mainWeather");
 
-//DOM element references
-var searchBox = document.querySelector('#search-box');
-var searchButton = document.querySelector('#search-button');
-var currentContainerEl = document.querySelector('#current');
-var forecastContainerEl = document.querySelector('#forecast');
-var searchHistoryContainerEl = document.querySelector('#history');
+  function showHistory() {
+    historyContainer.empty();
+    localStorageData.forEach((data) => {
+      const button = $("<button>")
+        .addClass("btn-history btn text-black btn-secondary font-weight-bold mb-2 mt-2")
+        .text(data)
+        .attr("data-city", data)
+        .on("click", function (event) {
+          event.preventDefault();
+          getApiData(data);
+        });
+      historyContainer.append(button);
+    });
+  }
 
-var timezone = document.getElementById("timezone");
-var countryEl = document.getElementById("country");
+  function getApiData(city) {
+    const forecastData = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=6&appid=${apiKey}&units=imperial`;
+    fetch(forecastData)
+      .then(response => response.json())
+      .then(data => {
+        localStorageData.add(data.city.name);
+        localStorage.setItem("city", JSON.stringify(Array.from(localStorageData)));
+        showHistory();
+        loadMainWeather(data);
+      })
+      .catch(error => {
+        console.log(error);
+        alert("An error occurred while fetching weather data.");
+      });
+  }
 
-//Add timezone plugins to day.js
-//dayjs.extend(window.dayjs_plugin_utc);
-//dayjs.extend(window.dayjs_plugin_timezone);
+  function loadMainWeather(data) {
+    const now = dayjs().format(" (M/DD/YYYY)");
+    const mainName = $("<div>").attr("id", "main-name").text(data.city.name + now);
+    const mainTemp = $("<div>").attr("id", "main-temp").text("temp: " + data.list[0].temp.day);
+    const mainWind = $("<div>").attr("id", "main-wind").text("wind: " + data.list[0].speed);
+    const mainHumidity = $("<div>").attr("id", "main-humidity").text("humidity: " + data.list[0].humidity + "%");
+    mainWeatherContainer.empty().append(mainName, mainTemp, mainWind, mainHumidity);
+    $("#mainWeather").html(mainWeatherContainer);
+  }
 
-getCurrentWeatherData()
-function getCurrentWeatherData () {
-    navigator.geolocation.getCurrentPosition((success) => {
+  showHistory();
+  getApiData("city");
 
-        let {latitude, longitude } = success.coords;
+  $(".btn").on("click", function (event) {
+    event.preventDefault();
+    const searchCity = $("#city").val();
+    $("#city").val("");
+    getApiData(searchCity);
+  });
+});
 
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`).then(res => res.json()).then(data => {
-
-        console.log(data);
-        showCurrentWeatherData(data)
-        })
-    })
-}
-
-function showCurrentWeatherData (data){
-    let {name} = data;
-    let {temp, humidity} = data.main; 
-    let {speed} = data.wind;
-
-    currentContainerEl.innerHTML = 
-    `<h3 class="city-name fw-bold">${name}</h3>
-    <h6 class="weather-item fw-bold">Temp: ${temp} F</h6>
-    <h6 class="weather-item fw-bold">Humidity: ${humidity} %</h6>
-    <h6 class="weather-item fw-bold">Wind: ${speed} MPH</h6>`;
-}
+const forecastWeatherContainer = $("<section>").attr("id", "forecastWeather");
