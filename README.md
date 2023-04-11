@@ -10,7 +10,8 @@ Type in a city in the search bar. The information pops up there to the right and
 
 ## Usage
 
-
+![Screenshot (36)](https://user-images.githubusercontent.com/126130230/231051091-0fcf159e-567f-49e0-96bc-c180144ba459.png)
+![Screenshot (37)](https://user-images.githubusercontent.com/126130230/231051093-94988219-b62f-478f-8296-603ed910d949.png)
 
 ## Credits
 
