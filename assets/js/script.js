@@ -55,5 +55,3 @@ $(document).ready(function () {
     getApiData(searchCity);
   });
 });
-
-const forecastWeatherContainer = $("<section>").attr("id", "forecastWeather");
