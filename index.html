@@ -10,8 +10,8 @@
 </head>
 <body>
   <!--Header-->
-  <header class="bg-primary text-light w-100 py-3">
-    <div class="fs-2 fw-bold" id="header-text">Weather Dashboard!</div>
+  <header class="w-100 py-3">
+    <div id="header-text">Weather Dashboard!</div>
   </header>
 
   <main class="mt-1">
@@ -24,12 +24,12 @@
             <label class="fs-2 fw-bold" for="city-input">Search for a city:</label>
 
             <!--Search box-->
-            <input type="text" class="form-control form-control-lg my-2" id="city" placeholder="Lawton"/>
+            <input type="text" class="form-control form-control-lg my-2" id="city" placeholder="Orlando"/>
           </section>
         </form>
 
         <!--Search button-->
-        <button type="submit" class="btn-history btn form-control text-black bg-primary font-weight-bold mb-2 mt-2" id="search-button">Search</button>
+        <button type="submit" class="btn-history btn form-control text-light mb-2 mt-2" id="search-button">Search</button>
 
         <!--The section where the search history will be stored-->
         <div class="my-2">
@@ -41,7 +41,7 @@
       <div class="col-9 py-3 pe-5" id="main-container">
 
         <!--Section where the searched city's current information will appear-->
-      <section class="card rounded-0 px-1 pb-2" id="mainWeather">
+      <section class="card border-2 rounded-0 px-1 pb-2" id="mainWeather">
         <div id="main-name"></div>
         <div id="main-temp"></div>
         <div id="main-wind"></div>
@@ -54,7 +54,7 @@
         <div class="row">
 
           <!--Day 1 information-->
-          <div class="card rounded-0 me-4 bg-dark text-light mb-3 pl-3" style="width:10rem">
+          <div class="card rounded-0 me-4 bg-dark text-light mb-3 pl-3" style="width:10.3rem">
             <div class="card-body" id="card1">
               <div class="day"></div>
               <img src="" class="icon">
@@ -65,7 +65,7 @@
           </div>
 
           <!--Day 2 information-->
-          <div class="card rounded-0 me-4 bg-dark text-light mb-3 pl-3" style="width:10rem">
+          <div class="card rounded-0 me-4 bg-dark text-light mb-3 pl-3" style="width:10.3rem">
             <div class="card-body" id="card2">
               <div class="day"></div>
               <img src="" class="icon">
@@ -76,7 +76,7 @@
           </div>
 
           <!--Day 3 information-->
-          <div class="card rounded-0 me-4 bg-dark text-light mb-3 pl-3" style="width:10rem">
+          <div class="card rounded-0 me-4 bg-dark text-light mb-3 pl-3" style="width:10.3rem">
             <div class="card-body" id="card3">
               <div class="day"></div>
               <img src="" class="icon">
@@ -87,7 +87,7 @@
           </div>
 
           <!--Day 4 information-->
-          <div class="card rounded-0 me-4 bg-dark text-light mb-3 pl-3" style="width:10rem">
+          <div class="card rounded-0 me-4 bg-dark text-light mb-3 pl-3" style="width:10.3rem">
             <div class="card-body" id="card4">
               <div class="day"></div>
               <img src="" class="icon">
@@ -98,7 +98,7 @@
           </div>
           
           <!--Day 5 information-->
-          <div class="card rounded-0 me-4 bg-dark text-light mb-3 pl-3" style="width:10rem">
+          <div class="card rounded-0 me-4 bg-dark text-light mb-3 pl-3" style="width:10.3rem">
             <div class="card-body" id="card5">
               <div class="day"></div>
               <img src="" class="icon">

@@ -26,7 +26,6 @@ $(document).ready(function () {
       .then(data => {
         localStorageData.add(data.city.name);
         localStorage.setItem("city", JSON.stringify(Array.from(localStorageData)));
-        showHistory();
         loadMainWeather(data);
       })
       .catch(error => {
@@ -38,20 +37,18 @@ $(document).ready(function () {
   function loadMainWeather(data) {
     const now = dayjs().format(" (M/DD/YYYY)");
     const mainName = $("<div>").attr("id", "main-name").text(data.city.name + now);
-    const mainTemp = $("<div>").attr("id", "main-temp").text("temp: " + data.list[0].temp.day);
-    const mainWind = $("<div>").attr("id", "main-wind").text("wind: " + data.list[0].speed);
-    const mainHumidity = $("<div>").attr("id", "main-humidity").text("humidity: " + data.list[0].humidity + "%");
+    const mainTemp = $("<div>").attr("id", "main-temp").text("Temp: " + data.list[0].temp.day + " F");
+    const mainWind = $("<div>").attr("id", "main-wind").text("Wind: " + data.list[0].speed + " mph");
+    const mainHumidity = $("<div>").attr("id", "main-humidity").text("Humidity: " + data.list[0].humidity + " %");
     mainWeatherContainer.empty().append(mainName, mainTemp, mainWind, mainHumidity);
     $("#mainWeather").html(mainWeatherContainer);
   }
-
-  showHistory();
-  getApiData("city");
 
   $(".btn").on("click", function (event) {
     event.preventDefault();
     const searchCity = $("#city").val();
     $("#city").val("");
     getApiData(searchCity);
+    showHistory();
   });
 });

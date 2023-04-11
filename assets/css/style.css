@@ -1,21 +1,25 @@
 :root{
-    display: block;   
+    display: block;
 }
 
 *{
     box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 label{
     display: inline-block;
 }
 
-#header-text{
-    text-align: center;
+header{
+    background: linear-gradient(to left, #312a91, #9198e5);
 }
 
-h2, h6{
-    padding-bottom: .5rem;
+#header-text{
+    text-align: center;
+    color: whitesmoke;
+    font-size: 2.5rem;
+    font-weight: bold;
 }
 
 .row{
@@ -32,4 +36,28 @@ h2, h6{
 
 .card-body{
     height: 200px;
+}
+
+#search-button{
+    background: linear-gradient(to left, #312a91, #9198e5);
+}
+
+#main-container{
+    max-width: 1000px;
+}
+
+#mainWeather{
+    border-color: black;
+    padding: 0 .3rem;
+}
+
+#main-name{
+    font-size: 1.9rem;
+    font-weight: bold;
+    padding-bottom: .5rem;
+}
+
+#main-temp, #main-wind, #main-humidity {
+    font-size: 1.1rem;
+    padding-bottom: .5rem;
 }
